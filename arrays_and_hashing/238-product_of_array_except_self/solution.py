@@ -2,6 +2,12 @@ from collections import deque
 
 
 class Solution:
+    # Solution approach:
+    # Create a prefix and postfix list
+    # Now multiply in the end with the new list.
+
+    # Time complexity: O(n)
+
     def productExceptSelf(self, nums: List[int]) -> List[int]:
         prefix = [1] * (len(nums) + 1)
         postfix = [1] * (len(nums) + 1)
