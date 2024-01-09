@@ -1,4 +1,12 @@
 class Solution:
+    # Create a dictionary for rows, columns and boxes
+    # Use a brute force approach to check if the number exist in one of the
+    # dictionaries
+
+    # Time complexity is O(64 * (add operation * 3))
+    # This can be slow with the dictionary and set!
+    # The extra data dtructures are slow
+
     def isValidSudoku(self, board: List[List[str]]) -> bool:
         rows = dict()
         columns = dict()
