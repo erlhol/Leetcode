@@ -1,26 +1,19 @@
 class Solution:
     # Solution explaination:
     # Iterate through all of the characters
-    # If we encounter an opening bracket, push it to the stack
-    # If we encounter a closing bracket before any opening bracket, return False
-    # If we encounter a corresponding opening bracket to the closing bracket, then we pop from the stack
-    # If there are any elements left on the stack, that means that we have not found a closing bracket for it
+    # If we encounter an opening bracket, push the closing bracket on the stack
+    # If we encounter a closing bracket: and the stack is now empty,
+    # then we know that we have not had a opening bracket for it. - return false
+    # If the closing bracket is not corresponding, return false
     def isValid(self, s: str) -> bool:
-        opening_brackets = []
-        brackets = {"(":")","{":"}","[":"]"}
+        stack = []
+        brackets = {"(": ")", "{": "}", "[": "]"}
         for c in s:
             # If opening bracket
             if c in brackets.keys():
-                opening_brackets.append(c)
-                
-            # If closing bracket
-            elif c in brackets.values():
-                if not opening_brackets:
-                    return False
-                opening = opening_brackets[-1]
-                if brackets[opening] == c:
-                    opening_brackets.pop()
-                else:
-                    return False              
-        return not opening_brackets
-        
+                stack.append(brackets[c])
+
+            # Then we know it is a closing bracket:
+            elif not stack or stack.pop() != c:
+                return False
+        return not stack
